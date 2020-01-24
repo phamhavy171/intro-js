@@ -153,7 +153,6 @@ function validatePassword() {
 }
 
 
-
 /**
  * this function supposely checks whether the sample is an empty string
  * or there is space within it
