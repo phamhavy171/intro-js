@@ -143,15 +143,22 @@ function validatePassword() {
     return false;
   }
 
+  return true;
+}
+
+function checkForNumber(_password) {
   if (checkForNumber(_password) <= 0) {
-      return false;
-  }
-  if (checkForCapitalLetter(_password) <= 0){
-      return false;
+    return false;
   }
   return true;
 }
 
+function checkForCapitalLetter(_password) {
+  if (checkForCapitalLetter(_password) <= 0) {
+    return false;
+  }
+  return true;
+}
 
 /**
  * this function supposely checks whether the sample is an empty string
