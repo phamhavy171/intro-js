@@ -14,18 +14,16 @@
   }
 
   function getNext() {
-    // TODO
+    // TODO     if (slide === totalItems - 1) {
+    // slide = 0;
+    // } else {
+    // slide++;
+    // }
+
     items[slide].classList.remove("active");
-    if (slide === totalItems - 1) {
-      slide = 0;
-    } else {
-      slide++;
-    }
+    slide = slide === totalItems - 1 ? 0 : slide + 1;
     items[slide].classList.add("active");
   }
-
-  // slide = (slide === totalItems - 1) ? 0 : slide++;
-
   function getPrev() {
     // TODO
     items[slide].classList.remove("active");
