@@ -7,10 +7,16 @@
   // Set event listeners
   function setEventListeners() {
     var next = document.getElementsByClassName("slider__button--next")[0],
+      // next = $(".slider__button--next")[0];
+
       prev = document.getElementsByClassName("slider__button--prev")[0];
+    // prev = $("slider_button--prev")[0];
 
     next.addEventListener("click", getNext);
+    // $(next).on("click", getNext);
+
     prev.addEventListener("click", getPrev);
+    // $(prev).on("click", getPrev);
   }
 
   function getNext() {
@@ -19,6 +25,7 @@
     // } else {
     // slide++;
     // }
+    // code below does same thing as above comments
 
     items[slide].classList.remove("active");
     slide = slide === totalItems - 1 ? 0 : slide + 1;
