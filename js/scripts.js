@@ -1,5 +1,6 @@
 var registeredUsers = []; // this array stores valid usernames until the next pageload
 
+<<<<<<< HEAD
 function validateForm(e) {
   e.preventDefault(); // stop the submit button from refreshing the page
   console.log("validating....");
@@ -14,6 +15,29 @@ function validateForm(e) {
 
     if (registeredUsers.length > 5) {
       registeredUsers.shift();
+=======
+function validateForm(e){
+    e.preventDefault(); // stop the submit button from refreshing the page
+    console.log('validating ....');
+
+    console.log('user name: ' + validateUsername());
+    console.log('email: ' + validateEmail());
+    console.log('password: ' + validatePassword());
+
+    if (validateUsername() 
+            && validateEmail() 
+            && validatePassword() 
+            && validatePhoneNumber()
+            && validateFirstName()
+            && validateLastName()
+        ) {
+        var _newUser = getUserDataObj();   
+        // add code to update registeredUsers array with new username and call render function
+        // TODO
+        registeredUsers.push(_newUser);
+        renderRegisteredUsers();
+        document.registration.reset(); // reset form input fields
+>>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
     }
 
     renderRegisteredUsers();
@@ -25,12 +49,34 @@ function validateForm(e) {
   }
 }
 
+function getUserDataObj() {
+    return {
+        userName: getUserName(),
+        firstName: getFirstName(),
+        lastName: getLastName(),
+        email: getEmail(),
+        phoneNumber: getPhoneNumber(),
+        password: getPassword(),
+        confirmPassword: getConfirmPassword()
+    };
+}
+
 function renderRegisteredUsers() {
+<<<<<<< HEAD
   registeredUsers.forEach(function(registeredUser) {
     var _newUser = document.createElement("li");
     _newUser.innerHTML = registeredUser;
     document.getElementById("registered-users").appendChild(_newUser);
   });
+=======
+    document.getElementById('registered-users').innerHTML = '';
+
+    registeredUsers.forEach(function(registeredUser){
+        var _newUser = document.createElement('li'); 
+        _newUser.innerHTML = JSON.stringify(registeredUser);
+        document.getElementById('registered-users').appendChild(_newUser);
+    });
+>>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
 }
 
 /**
@@ -41,6 +87,36 @@ function validateUsername() {
   var _userName = getUserName();
 
   return !checkSpace(_userName);
+}
+
+/**
+ * this function supposely validates submitted username
+ * @returns [Boolean] true when valid, false otherwise
+ */
+function validateFirstName(){
+    var _firstName = getFirstName();
+    
+    return (_firstName !== '');
+}
+
+/**
+ * this function supposely validates submitted username
+ * @returns [Boolean] true when valid, false otherwise
+ */
+function validateLastName(){
+    var _lastName = getLastName();
+    
+    return (_lastName !== '');
+}
+
+/**
+ * this function supposely validates submitted username
+ * @returns [Boolean] true when valid, false otherwise
+ */
+function validatePhoneNumber(){
+    var _phoneNumber = getPhoneNumber();
+    
+    return (!isNaN(_phoneNumber));
 }
 
 /**
@@ -88,7 +164,15 @@ function validatePassword() {
     return false;
   }
 
+<<<<<<< HEAD
   return true;
+=======
+    if (_password.length < 8) {
+        return false;
+    }
+
+    return true;
+>>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
 }
 
 /**
@@ -116,7 +200,32 @@ function getUserName() {
   }
 }
 
+function getFirstName() {
+    if (typeof(document.registration.firstname.value) === 'undefined') {
+        return '';
+    } else {
+        return document.registration.firstname.value;
+    }   
+}
+
+function getLastName() {
+    if (typeof(document.registration.lastname.value) === 'undefined') {
+        return '';
+    } else {
+        return document.registration.lastname.value;
+    }   
+}
+
+function getPhoneNumber() {
+    if (typeof(document.registration.phonenumber.value) === 'undefined') {
+        return '';
+    } else {
+        return document.registration.phonenumber.value;
+    }   
+}
+
 function getEmail() {
+<<<<<<< HEAD
   // TODO
   if (typeof document.registration.email.value === "undefined") {
     return "";
@@ -142,3 +251,27 @@ function getConfirmPassword() {
     return document.registration.password_confirm.value;
   }
 }
+=======
+    if (typeof(document.registration.email.value) === 'undefined') {
+        return '';
+    } else {
+        return document.registration.email.value;
+    }   
+}
+
+function getPassword() {
+    if (typeof(document.registration.password.value) === 'undefined') {
+        return '';
+    } else {
+        return document.registration.password.value;
+    }   
+}
+
+function getConfirmPassword() {
+    if (typeof(document.registration.password_confirm.value) === 'undefined') {
+        return '';
+    } else {
+        return document.registration.password_confirm.value;
+    }   
+}
+>>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
