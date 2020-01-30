@@ -1,82 +1,61 @@
 var registeredUsers = []; // this array stores valid usernames until the next pageload
 
-<<<<<<< HEAD
+$(document).ready(function() {
+  $(".btn btn-success").on("click", validateForm);
+});
+
 function validateForm(e) {
   e.preventDefault(); // stop the submit button from refreshing the page
-  console.log("validating....");
-
+  console.log("validating ....");
   console.log("user name: " + validateUsername());
   console.log("email: " + validateEmail());
   console.log("password: " + validatePassword());
 
-  if (validateUsername() && validateEmail() && validatePassword()) {
-    var _newUser = getUserName();
-    registeredUsers.push(_newUser);
-
-    if (registeredUsers.length > 5) {
-      registeredUsers.shift();
-=======
-function validateForm(e){
-    e.preventDefault(); // stop the submit button from refreshing the page
-    console.log('validating ....');
-
-    console.log('user name: ' + validateUsername());
-    console.log('email: ' + validateEmail());
-    console.log('password: ' + validatePassword());
-
-    if (validateUsername() 
-            && validateEmail() 
-            && validatePassword() 
-            && validatePhoneNumber()
-            && validateFirstName()
-            && validateLastName()
-        ) {
-        var _newUser = getUserDataObj();   
-        // add code to update registeredUsers array with new username and call render function
-        // TODO
-        registeredUsers.push(_newUser);
-        renderRegisteredUsers();
-        document.registration.reset(); // reset form input fields
->>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
-    }
-
-    renderRegisteredUsers();
-
-    // add code to update registeredUsers array with new user and call render function...
-    // && means all inputs need value true. one of them false will make all false.
+  if (
+    validateUsername() &&
+    validateEmail() &&
+    validatePassword() &&
+    validatePhoneNumber() &&
+    validateFirstName() &&
+    validateLastName()
+  ) {
+    var _newUser = getUserDataObj();
+    // add code to update registeredUsers array with new username and call render function
     // TODO
+    registeredUsers.push(_newUser);
+    renderRegisteredUsers();
     document.registration.reset(); // reset form input fields
   }
+
+  renderRegisteredUsers();
+
+  // add code to update registeredUsers array with new user and call render function...
+  // && means all inputs need value true. one of them false will make all false.
+  // TODO
+  document.registration.reset(); // reset form input fields
 }
 
 function getUserDataObj() {
-    return {
-        userName: getUserName(),
-        firstName: getFirstName(),
-        lastName: getLastName(),
-        email: getEmail(),
-        phoneNumber: getPhoneNumber(),
-        password: getPassword(),
-        confirmPassword: getConfirmPassword()
-    };
+  return {
+    userName: getUserName(),
+    firstName: getFirstName(),
+    lastName: getLastName(),
+    email: getEmail(),
+    phoneNumber: getPhoneNumber(),
+    password: getPassword(),
+    confirmPassword: getConfirmPassword()
+  };
 }
 
 function renderRegisteredUsers() {
-<<<<<<< HEAD
+  //document.getElementById("registered-users").innerHTML = "";
+  $("#registered-users").empty();
+
   registeredUsers.forEach(function(registeredUser) {
     var _newUser = document.createElement("li");
-    _newUser.innerHTML = registeredUser;
+    _newUser.innerHTML = JSON.stringify(registeredUser);
     document.getElementById("registered-users").appendChild(_newUser);
   });
-=======
-    document.getElementById('registered-users').innerHTML = '';
-
-    registeredUsers.forEach(function(registeredUser){
-        var _newUser = document.createElement('li'); 
-        _newUser.innerHTML = JSON.stringify(registeredUser);
-        document.getElementById('registered-users').appendChild(_newUser);
-    });
->>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
 }
 
 /**
@@ -93,30 +72,30 @@ function validateUsername() {
  * this function supposely validates submitted username
  * @returns [Boolean] true when valid, false otherwise
  */
-function validateFirstName(){
-    var _firstName = getFirstName();
-    
-    return (_firstName !== '');
+function validateFirstName() {
+  var _firstName = getFirstName();
+
+  return _firstName !== "";
 }
 
 /**
  * this function supposely validates submitted username
  * @returns [Boolean] true when valid, false otherwise
  */
-function validateLastName(){
-    var _lastName = getLastName();
-    
-    return (_lastName !== '');
+function validateLastName() {
+  var _lastName = getLastName();
+
+  return _lastName !== "";
 }
 
 /**
  * this function supposely validates submitted username
  * @returns [Boolean] true when valid, false otherwise
  */
-function validatePhoneNumber(){
-    var _phoneNumber = getPhoneNumber();
-    
-    return (!isNaN(_phoneNumber));
+function validatePhoneNumber() {
+  var _phoneNumber = getPhoneNumber();
+
+  return !isNaN(_phoneNumber);
 }
 
 /**
@@ -164,15 +143,11 @@ function validatePassword() {
     return false;
   }
 
-<<<<<<< HEAD
-  return true;
-=======
-    if (_password.length < 8) {
-        return false;
-    }
+  if (_password.length < 8) {
+    return false;
+  }
 
-    return true;
->>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
+  return true;
 }
 
 /**
@@ -192,86 +167,114 @@ function checkSpace(sample) {
  *
  * @returns [Boolean] true when valid, false otherwise
  */
+// function getUserName() {
+//   if (typeof (document.registration.username.value) === "undefined") {
+//     return "";
+//   } else {
+//     return document.registration.username.value;
+//   }
+// }
+
 function getUserName() {
-  if (typeof document.registration.username.value === "undefined") {
+  if (typeof $('[name="username"]').val() === "undefined") {
     return "";
   } else {
-    return document.registration.username.value;
+    return $('[name="username"]').val();
   }
 }
+
+// function getFirstName() {
+//   if (typeof document.registration.firstname.value === "undefined") {
+//     return "";
+//   } else {
+//     return document.registration.firstname.value;
+//   }
+// }
 
 function getFirstName() {
-    if (typeof(document.registration.firstname.value) === 'undefined') {
-        return '';
-    } else {
-        return document.registration.firstname.value;
-    }   
+  if (typeof $('[name="firstname"]').val() === "undefined") {
+    return "";
+  } else {
+    return $('[name="firstname"]').val();
+  }
 }
+
+// function getLastName() {
+//   if (typeof document.registration.lastname.value === "undefined") {
+//     return "";
+//   } else {
+//     return document.registration.lastname.value;
+//   }
+// }
 
 function getLastName() {
-    if (typeof(document.registration.lastname.value) === 'undefined') {
-        return '';
-    } else {
-        return document.registration.lastname.value;
-    }   
+  if (typeof $('[name="lastname"]').val() === "undefined") {
+    return "";
+  } else {
+    return $('[name="lastname"]').val();
+  }
 }
+
+// function getPhoneNumber() {
+//   if (typeof document.registration.phonenumber.value === "undefined") {
+//     return "";
+//   } else {
+//     return document.registration.phonenumber.value;
+//   }
+// }
 
 function getPhoneNumber() {
-    if (typeof(document.registration.phonenumber.value) === 'undefined') {
-        return '';
-    } else {
-        return document.registration.phonenumber.value;
-    }   
+  if (typeof $('[name="phonenumber"]').val() === "undefined") {
+    return "";
+  } else {
+    return $('[name="phonenumber"]').val();
+  }
 }
+
+// function getEmail() {
+//   if (typeof document.registration.email.value === "undefined") {
+//     return "";
+//   } else {
+//     return document.registration.email.value;
+//   }
+// }
 
 function getEmail() {
-<<<<<<< HEAD
-  // TODO
-  if (typeof document.registration.email.value === "undefined") {
+  if (typeof $('[name="email"]').val() === "undefined") {
     return "";
   } else {
-    return document.registration.email.value;
+    return $('[name="email"]').val();
   }
 }
+
+// function getPassword() {
+//   if (typeof document.registration.password.value === "undefined") {
+//     return "";
+//   } else {
+//     return document.registration.password.value;
+//   }
+// }
 
 function getPassword() {
-  // TODO
-  if (typeof document.registration.password.value === "undefined") {
+  if (typeof $('[name="password"]').val() === "undefined") {
     return "";
   } else {
-    return document.registration.password.value;
+    return $('[name="password"]').val();
   }
 }
 
+// function getConfirmPassword() {
+//   if (typeof document.registration.password_confirm.value === "undefined") {
+//     return "";
+//   } else {
+//     return document.registration.password_confirm.value;
+//   }
+// }
+
 function getConfirmPassword() {
-  // TODO
-  if (typeof document.registration.password_confirm.value === "undefined") {
+  if (typeof $('[name="password_confirm"]').val() === "undefined") {
     return "";
   } else {
-    return document.registration.password_confirm.value;
+    return $('[name="password_confirm"]').val();
   }
 }
-=======
-    if (typeof(document.registration.email.value) === 'undefined') {
-        return '';
-    } else {
-        return document.registration.email.value;
-    }   
-}
-
-function getPassword() {
-    if (typeof(document.registration.password.value) === 'undefined') {
-        return '';
-    } else {
-        return document.registration.password.value;
-    }   
-}
-
-function getConfirmPassword() {
-    if (typeof(document.registration.password_confirm.value) === 'undefined') {
-        return '';
-    } else {
-        return document.registration.password_confirm.value;
-    }   
-}
->>>>>>> e345da9e5ffeea1bf6888cb68b6f6821870532c1
