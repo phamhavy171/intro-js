@@ -222,23 +222,46 @@
   contentWayPoint();
 })(jQuery);
 
-document.addEventListener("mouseleave", function() {
-  // $(document).mouseleave(function() {
-  //   $("#popup1").css("visibility", "visible");
-  // });
-  document.getElementById("popup1").style.visibility = "visible";
-});
+// document.addEventListener("mouseleave", function() {
+//   // $(document).mouseleave(function() {
+//   //   $("#popup1").css("visibility", "visible");
+//   // });
+//   document.getElementById("popup1").style.visibility = "visible";
+// });
 
-document.addEventListener("click", function() {
-  $("#popup1 .close").click(function() {
-    $("#popup1").css("visibility", "hidden");
-    $("#popup2").css("visibility", "hidden");
+// document.addEventListener("click", function() {
+//   $("#popup1 .close").click(function() {
+//     $("#popup1").css("visibility", "hidden");
+//     $("#popup2").css("visibility", "hidden");
+//   });
+// });
+
+// document.addEventListener("click", function email_subscribepopup() {
+//   $("#popup1 .button").click(function email_subscribepopup() {
+//     $("#popup1").css("visibility", "hidden");
+//     $("#popup2").css("visibility", "visible");
+//   });
+// });
+
+document.addEventListener("click", function click_pupup3() {
+  $("#click_popup3").click(function click_pupup3() {
+    $("#popup3").css("visibility", "visible");
   });
 });
 
-document.addEventListener("click", function email_subscribepopup() {
-  $("#popup1 .button").click(function email_subscribepopup() {
-    $("#popup1").css("visibility", "hidden");
-    $("#popup2").css("visibility", "visible");
+$("#popup3 .popup").on("scroll", function() {
+  if (
+    $("#popup3 .popup").scrollTop() + $("#popup3 .popup").height() ==
+    $("#popup3 #dialog").height()
+  ) {
+    $("#popup3 .close").css("visibility", "visible");
+  } else {
+    $("#popup3 .close").css("visibility", "hidden");
+  }
+});
+document.addEventListener("click", function() {
+  $("#popup3 .close").click(function() {
+    $("#popup3").css("visibility", "hidden");
+    $("#popup3 .close").css("visibility", "hidden");
   });
 });
